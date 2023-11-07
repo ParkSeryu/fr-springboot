@@ -6,4 +6,4 @@
 
 공부하면서 썼던 TIL 모음
 1. 2장 - 테스트코드 : https://parkseryu.tistory.com/120
-2. 3장 - JPA : 
+2. 3장 - JPA : https://parkseryu.tistory.com/121
