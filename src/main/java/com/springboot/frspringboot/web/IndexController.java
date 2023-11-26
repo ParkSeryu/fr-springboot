@@ -34,7 +34,6 @@ public class IndexController {
         model.addAttribute("posts", postsService.findAllDesc());
 
         if (user != null) {
-            String test = user.getName();
             model.addAttribute("userName1", user.getName());
         }
 
