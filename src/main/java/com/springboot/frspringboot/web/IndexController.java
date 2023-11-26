@@ -4,7 +4,6 @@ import com.springboot.frspringboot.config.auth.LoginUser;
 import com.springboot.frspringboot.config.auth.dto.SessionUser;
 import com.springboot.frspringboot.service.posts.PostsService;
 import com.springboot.frspringboot.web.dto.PostsResponseDto;
-import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     @GetMapping("/posts/save")
     public String postsSave() {
@@ -36,7 +34,8 @@ public class IndexController {
         model.addAttribute("posts", postsService.findAllDesc());
 
         if (user != null) {
-            model.addAttribute("userName", user.getName());
+            String test = user.getName();
+            model.addAttribute("userName1", user.getName());
         }
 
         return "index";
