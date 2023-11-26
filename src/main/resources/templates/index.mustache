@@ -17,7 +17,6 @@
                     <a href="/logout" class="btn btn-info active" role="button">Logout</a> <!-- 기본제공하는 로그아웃 URL -->
                 {{/userName1}}
                 {{^userName1}} <!-- 머스테치에서 해당 값이 존재하지 않는 경우에만 ^를 사용한다. -->
-                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
                     <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
                     <!-- 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL이다. -->
                 {{/userName1}}
