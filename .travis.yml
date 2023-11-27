@@ -47,6 +47,8 @@ deploy: # S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비�
     deployment_group: aws-springboot2-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true
+    on:
+      branch: main
 
 # CI 실행 완료 시 메일로 알람!
 notifications:
