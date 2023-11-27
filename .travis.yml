@@ -35,7 +35,7 @@ deploy: # S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비�
     on:
       branch: main
 
-  - provider: codeploy
+  - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
 
