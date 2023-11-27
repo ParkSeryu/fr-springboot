@@ -38,4 +38,6 @@ deploy: # S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비�
     acl: private # zip 파일 접근을 private하게
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
+    on:
+      branch: main
 
