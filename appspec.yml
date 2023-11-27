@@ -9,3 +9,17 @@ files:
     overwrite: yes
       # 기존에 파일들이 있으면 덮어쓸지를 결정한다.
       # 현재 yes라고 했으니 파일들을 덮어쓰게 된다.
+
+permissions: # CodeDeploy에서 Ec2 서버로 넘겨준 파일들을 모두 ec2-user 권한을 갖도록 한다.
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
+hooks: # CodeDeploy 배포 단계에서 실행할 명령어를 지정한다.
+  # Applicationstart 라는 단계에서 deploy.sh를 ec2-user 권한으로 실행하게 한다.
+  # timeout: 60으로 스크립트 실행 60초 이상 수행되면 실패가 된다. (무한정 기다릴 수 없으니 시간 제한을 둬야만 한다.)
+  ApplicationStart:
+    - location: deploy.sh
+      timeout: 60
+      runas: ec2-user

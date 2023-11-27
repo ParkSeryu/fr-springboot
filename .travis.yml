@@ -17,9 +17,13 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy: # deploy가 실행되기 전에 수행된다. CodeDeploy는 Jar 파일을 인식하지 못하므로 기타 설정 파일들을 모아 압축(zip) 한다.
-  - zip -r aws-springboot2-webservice * # 현재 위치의 모든 파일을 aws-springboot2-webservice 이름으로 압축(zip)한다.
-  - mkdir -p deploy # deploy라는 디렉토리를 Travis CI가 실행 중인 위치에서 생성한다.
-  - mv aws-springboot2-webservice.zip deploy/aws-springboot2-webservice.zip # aws-springboot-webservice.zip파일을 deploy/freelec-springboot2-webservice.zip으로 이동시킨다.
+  - mkdir -p before-deploy # zip에 포함시킬 파일들을 담은 디렉토리 생성 ( Travis CI는 S3로 특정 파일만 업로드 된다. 디렉토리 단위로만 업로드할 수 있기 때문에 before-deploy 디렉토리는 항상 생성한다.)
+  - cp scripts/*.sh before-deploy/ # before-deploy에는 zip 파일에 포함시킬 파일들을 저장한다.
+  - cp appspec.yml before-deploy/
+  - cp build/libs/*.jar before-deploy/
+  - cd before-deploy && zip -r before-deploy * # before-deploy로 이동 후 전체 압축 # zip -r 명령어를 통해 before-deploy 디렉토리 전체 파일을 압축한다.
+  - cd ../ && mkdir -p deploy # 상위 디렉토리로 이동 후 deploy 디렉토리 생성
+  - mv before-deploy/before-deploy.zip deploy/aws-springboot2-webservice.zip # deploy로 zip파일 이동
 
 deploy: # S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비스와 연동될 행위들을 선언한다.
   - provider: s3
