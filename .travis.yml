@@ -23,9 +23,9 @@ notifications:
       - pgh0616@naver.com
 
 before_deploy: # deploy가 실행되기 전에 수행된다. CodeDeploy는 Jar 파일을 인식하지 못하므로 기타 설정 파일들을 모아 압축(zip) 한다.
-  - zip -r aws-springboot2-webservice * # 현재 위치의 모든 팡일을 aws-springboot2-webservice 이름으로 압축(zip)한다.
+  - zip -r aws-springboot2-webservice * # 현재 위치의 모든 파일을 aws-springboot2-webservice 이름으로 압축(zip)한다.
   - mkdir -p deploy # deploy라는 디렉토리를 Travis CI가 실행 중인 위치에서 생성한다.
-  - mv aws-springboo2-webservice.zip deploy/aws-springboot2-webservice.zip # aws-springboot-webservice.zip파일을 deploy/freelec-springboot2-webservice.zip으로 이동시킨다.
+  - mv aws-springboot2-webservice.zip deploy/aws-springboot2-webservice.zip # aws-springboot-webservice.zip파일을 deploy/freelec-springboot2-webservice.zip으로 이동시킨다.
 
 deploy: # S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비스와 연동될 행위들을 선언한다.
   - provider: s3
